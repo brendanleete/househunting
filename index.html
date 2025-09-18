@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Hunt Settlement & Verified</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50, #1a2530);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            font-size: 28px;
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: #3498db;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #3498db;
+        }
+        
+        .hero {
+            background: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            font-size: 32px;
+            color: #2c3e50;
+        }
+        
+        .section-description {
+            text-align: center;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #7f8c8d;
+        }
+        
+        .properties {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .property-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .property-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .property-card:hover .property-image img {
+            transform: scale(1.1);
+        }
+        
+        .property-details {
+            padding: 20px;
+        }
+        
+        .property-type {
+            color: #3498db;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .property-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .property-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .property-features {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: #7f8c8d;
+        }
+        
+        .property-features span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .property-features i {
+            margin-right: 5px;
+        }
+        
+        .booking-form {
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 50px 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .required::after {
+            content: '*';
+            color: #e74c3c;
+            margin-left: 4px;
+        }
+        
+        .payment-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 30px 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .booking-summary {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 30px 0;
+        }
+        
+        .booking-detail {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .total {
+            font-weight: 700;
+            font-size: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+        
+        .footer-section p {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: #3498db;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .hero h2 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-home"></i>
+                    <h1>House <span>Hunt</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Properties</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#" class="btn">Sign Up</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Find Your Perfect Home</h2>
+                <p>Verified rentals across the USA. Safe, secure, and simple.</p>
+                <a href="#booking" class="btn">Book Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Section -->
+    <section class="container">
+        <h2 class="section-title">Available Properties</h2>
+        <p class="section-description">Browse our verified selection of apartments and houses across the United States</p>
+        
+        <div class="properties">
+            <!-- Property 1 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Studio Apartment">
+                </div>
+                <div class="property-details">
+                    <div class="property-type">Studio Apartment</div>
+                    <h3 class="property-title">Modern Studio in NYC</h3>
+                    <div class="property-price">$400/month</div>
+                    <div class="property-features">
+                        <span><i class="fas fa-bed"></i> 1 Bed</span>
+                        <span><i class="fas fa-bath"></i> 1 Bath</span>
+                        <span><i class="fas fa-ruler-combined"></i> 500 sq ft</span>
+                    </div>
+                    <p>Beautiful studio apartment in the heart of Manhattan, perfect for students and young professionals.</p>
+                    <a href="#booking" class="btn" style="display: block; text-align: center; margin-top: 15px;">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Property 2 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1084&q=80" alt="Two Bedroom">
+                </div>
+                <div class="property-details">
+                    <div class="property-type">Two Bedroom</div>
+                    <h3 class="property-title">Spacious Apartment in LA</h3>
+                    <div class="property-price">$1,200/month</div>
+                    <div class="property-features">
+                        <span><i class="fas fa-bed"></i> 2 Beds</span>
+                        <span><i class="fas fa-bath"></i> 2 Baths</span>
+                        <span><i class="fas fa-ruler-combined"></i> 950 sq ft</span>
+                    </div>
+                    <p>Bright and airy two-bedroom apartment with modern amenities and great natural light.</p>
+                    <a href="#booking" class="btn" style="display: block; text-align: center; margin-top: 15px;">Book Now</a>
+                </div>
+            </div>
+            
+            <!-- Property 3 -->
+            <div class="property-card">
+                <div class="property-image">
+                    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Family House">
+                </div>
+                <div class="property-details">
+                    <div class="property-type">Family House</div>
+                    <h3 class="property-title">Suburban Home in Texas</h3>
+                    <div class="property-price">$1,800/month</div>
+                    <div class="property-features">
+                        <span><i class="fas fa-bed"></i> 3 Beds</span>
+                        <span><i class="fas fa-bath"></i> 2 Baths</span>
+                        <span><i class="fas fa-ruler-combined"></i> 1600 sq ft</span>
+                    </div>
+                    <p>Perfect family home in a quiet neighborhood with great schools and parks nearby.</p>
+                    <a href="#booking" class="btn" style="display: block; text-align: center; margin-top: 15px;">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section id="booking" class="container">
+        <h2 class="section-title">Book Your Rental</h2>
+        <p class="section-description">Fill out the form below to book your property. All fields are required for verification purposes.</p>
+        
+        <div class="booking-form">
+            <form id="rentalForm">
+                <h3>Personal Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName" class="required">First Name</label>
+                        <input type="text" id="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" class="required">Last Name</label>
+                        <input type="text" id="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email" class="required">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="required">Phone Number</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ssn" class="required">Social Security Number (SSN)</label>
+                    <input type="text" id="ssn" placeholder="XXX-XX-XXXX" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address" class="required">Current Address</label>
+                    <input type="text" id="address" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city" class="required">City</label>
+                        <input type="text" id="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state" class="required">State</label>
+                        <select id="state" required>
+                            <option value="">Select State</option>
+                            <option value="CA">California</option>
+                            <option value="TX">Texas</option>
+                            <option value="FL">Florida</option>
+                            <option value="NY">New York</option>
+                            <option value="IL">Illinois</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="zip" class="required">ZIP Code</label>
+                        <input type="text" id="zip" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="selfie" class="required">Upload a Selfie</label>
+                    <input type="file" id="selfie" accept="image/*" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="idDocument" class="required">Upload Government ID</label>
+                    <input type="file" id="idDocument" required>
+                </div>
+                
+                <h3>Rental Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="propertyType" class="required">Property Type</label>
+                        <select id="propertyType" required>
+                            <option value="">Select Type</option>
+                            <option value="studio">Studio Apartment</option>
+                            <option value="1bed">1-Bedroom</option>
+                            <option value="2bed">2-Bedroom</option>
+                            <option value="3bed">3-Bedroom</option>
+                            <option value="house">House</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="duration" class="required">Rental Duration</label>
+                        <select id="duration" required>
+                            <option value="">Select Duration</option>
+                            <option value="3">3 Days</option>
+                            <option value="7">1 Week</option>
+                            <option value="30">1 Month</option>
+                            <option value="90">3 Months</option>
+                            <option value="180">6 Months</option>
+                            <option value="365">1 Year</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="startDate" class="required">Desired Start Date</label>
+                    <input type="date" id="startDate" required>
+                </div>
+                
+                <div class="payment-info">
+                    <h3><i class="fas fa-info-circle"></i> Payment Information</h3>
+                    <p>A $50 non-refundable booking fee is required to process your application. This fee covers verification costs and will be applied to your first month's rent if approved.</p>
+                </div>
+                
+                <div class="booking-summary">
+                    <h3>Booking Summary</h3>
+                    <div class="booking-detail">
+                        <span>Booking Fee:</span>
+                        <span>$50.00</span>
+                    </div>
+                    <div class="booking-detail total">
+                        <span>Total Due Now:</span>
+                        <span>$50.00</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn" style="width: 100%;">Proceed to Payment</button>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <p>By clicking "Proceed to Payment", you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>House Hunt Settlement & Verified</h3>
+                    <p>We help people find their perfect home with verified listings and a secure booking process across the United States.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> Email: arthurallao065@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> Phone: (555) 123-4567</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Address: 123 Main St, New York, NY 10001</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">How It Works</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">FAQ</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 House Hunt Settlement & Verified. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('rentalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Generate a random booking ID
+            const bookingId = 'HH-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+            
+            // Show confirmation message with booking ID
+            alert(`Thank you for your booking!\nYour Booking ID is: ${bookingId}\nPlease save this ID for future reference.\nYou will now be redirected to payment.`);
+            
+            // In a real application, this would redirect to a payment gateway
+            window.location.href = "mailto:arthurallao065@gmail.com?subject=House Hunt Booking Payment&body=Please provide instructions for paying the $50 booking fee. My Booking ID is: " + bookingId;
+        });
+        
+        // Simple form validation
+        const inputs = document.querySelectorAll('input, select');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value) {
+                    this.style.borderColor = 'red';
+                } else {
+                    this.style.borderColor = '#ddd';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
